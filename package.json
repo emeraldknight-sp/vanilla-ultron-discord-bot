@@ -1,0 +1,21 @@
+{
+  "name": "vanilla-ultron-discord-bot",
+  "version": "1.0.0",
+  "description": "bot project for discord made with vanilla javascript",
+  "main": "index.js",
+  "author": "David Almeida <contato.davidalmeida@outlook.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.2"
+  },
+  "scripts": {
+    "write": "prettier --write .",
+    "check": "prettier --check ."
+  }
+}
