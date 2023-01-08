@@ -1,9 +1,7 @@
-import { Client, Collection, Events, GatewayIntentBits } from "discord.js";
-import { config } from "./config.js";
-import { status } from "./status.js";
-import path, { dirname } from "node:path";
-import { fileURLToPath } from "node:url";
-import fs from "node:fs";
+const { Client, GatewayIntentBits, Collection } = require("discord.js");
+const fs = require("node:fs");
+const path = require("node:path");
+require("dotenv").config();
 
 const client = new Client({
   intents: [
@@ -16,65 +14,36 @@ const client = new Client({
 
 client.commands = new Collection();
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const commandsPath = path.join(__dirname, "/commands");
-
+const commandsPath = path.join(__dirname, "commands");
 const commandFiles = fs
   .readdirSync(commandsPath)
   .filter((file) => file.endsWith(".js"));
 
 for (const file of commandFiles) {
   const filePath = path.join(commandsPath, file);
-
-  // IMPORTANDO O ARQUIVO
-  const command = import(`${filePath}`)
-    .then((param) => {
-      if ("data" in command && "execute" in command) {
-        client.commands.set(param.data.name, param);
-        console.log(client.commands);
-      }
-    })
-    .catch(() => {
-      console.log(
-        `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
-      );
-    });
+  const command = require(filePath);
+  if ("data" in command && "execute" in command) {
+    client.commands.set(command.data.name, command);
+  } else {
+    console.log(
+      `[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`
+    );
+  }
 }
 
-client.on(Events.InteractionCreate, async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
+const eventsPath = path.join(__dirname, "events");
+const eventFiles = fs
+  .readdirSync(eventsPath)
+  .filter((file) => file.endsWith(".js"));
 
-  const command = interaction.client.commands.get(interaction.commandName);
-
-  if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
-    return;
+for (const file of eventFiles) {
+  const filePath = path.join(eventsPath, file);
+  const event = require(filePath);
+  if (event.once) {
+    client.once(event.name, (...args) => event.execute(...args));
+  } else {
+    client.on(event.name, (...args) => event.execute(...args));
   }
+}
 
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({
-      content: "There was an error while executing this command!",
-      ephemeral: true,
-    });
-  }
-});
-
-client.once(Events.ClientReady, (clientReady) => {
-  console.log(
-    `Ready! Device successfully connected. Hello there, I am ${clientReady.user.tag}!`
-  );
-
-  const setStatus = () => {
-    let randomStatus = status[Math.floor(Math.random() * status.length)];
-    client.user.setPresence({ game: randomStatus });
-  };
-
-  setStatus();
-  setInterval(() => setStatus(), 10000);
-});
-
-client.login(config.token);
+client.login(process.env.DISCORD_TOKEN);
