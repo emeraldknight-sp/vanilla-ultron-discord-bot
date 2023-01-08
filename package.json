@@ -5,7 +5,20 @@
   "main": "./src/index.js",
   "author": "David Almeida <contato.davidalmeida@outlook.com>",
   "license": "MIT",
-  "type": "module",
+  "type": "commonjs",
+  "contributors": [
+    {
+      "name": "DAVID ALMEIDA <blank@email.com>",
+      "url": "https://github.com/emeraldknight-sp"
+    }
+  ],
+  "keywords": [
+    "discord",
+    "discordjs",
+    "bot",
+    "translate",
+    "translator"
+  ],
   "dependencies": {
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3"
