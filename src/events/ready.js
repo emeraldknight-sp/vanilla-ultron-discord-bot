@@ -56,6 +56,6 @@ module.exports = {
     };
 
     setInterval(setStatus, 10 * 1000);
-    console.log(`✅ SUCCESS! ${client.user.tag} has logged into Discord!`);
+    console.log(`✅ ${client.user.username} has logged into Discord!`);
   },
 };
