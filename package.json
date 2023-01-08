@@ -4,8 +4,16 @@
   "description": "bot project for discord made with vanilla javascript",
   "main": "./src/index.js",
   "author": "David Almeida <contato.davidalmeida@outlook.com>",
-  "license": "MIT",
+  "license": "ISC",
   "type": "commonjs",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "deploy-cmds": "node ./src/deploy.commands.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "write": "prettier --write .",
+    "check": "prettier --check .",
+    "lint": "eslint ."
+  },
   "contributors": [
     {
       "name": "DAVID ALMEIDA <blank@email.com>",
@@ -28,9 +36,5 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.2"
-  },
-  "scripts": {
-    "write": "prettier --write .",
-    "check": "prettier --check ."
   }
 }
