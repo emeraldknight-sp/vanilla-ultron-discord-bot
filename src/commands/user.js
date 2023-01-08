@@ -7,7 +7,23 @@ module.exports = {
 
   async execute(interaction) {
     await interaction.reply(
-      `This command was run by @${interaction.user.username}, who joined on ${interaction.member.joinedAt}.`
+      `${
+        interaction.member
+      }, user since ${interaction.member.user.createdAt.toLocaleString(
+        "en-US",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      )}. and member of this server since ${interaction.member.joinedAt.toLocaleString(
+        "en-US",
+        {
+          day: "numeric",
+          month: "long",
+          year: "numeric",
+        }
+      )}. your roles ${interaction.member.roles}.`
     );
   },
 };
