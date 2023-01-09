@@ -20,7 +20,7 @@ module.exports = {
 
       {
         name: "EMERALD on ▶",
-        type: ActivityType.Streaming,
+        type: ActivityType.Watching,
         status: "online",
         url: "https://www.youtube.com/@emerald__",
       },
@@ -55,7 +55,7 @@ module.exports = {
       });
     };
 
-    setInterval(setStatus, 10 * 1000);
-    console.log(`✅ ${client.user.username} has logged into Discord!`);
+    setInterval(setStatus, 60 * 1000);
+    console.log(`[LOG]: ${client.user.username} has logged into Discord! ✅`);
   },
 };
