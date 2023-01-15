@@ -56,6 +56,6 @@ module.exports = {
     };
 
     setInterval(setStatus, 60 * 1000);
-    console.log(`[LOG]: ${client.user.username} has logged into Discord! ✅`);
+    console.log(`${client.user.username} has logged into Discord! ✅`);
   },
 };
