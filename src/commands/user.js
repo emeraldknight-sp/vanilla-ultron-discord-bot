@@ -19,12 +19,8 @@ module.exports = {
             }.png`,
         url: "https://github.com/emeraldknight-sp/vanilla-ultron-discord-bot",
       })
-      // .setTitle(`${interaction.user.username}, receba aqui o seu bem-vindo! 👏`)
-      // .setDescription(
-      //   `Parabéns por ter encontrado o servidor **${interaction.guild.name}** com você somos mais e menos sozinhos por aqui, ${interaction.member.user}! 🤟
-
-      //   Estamos agora com **${interaction.member.guild.memberCount} membros**, fique a vontade e divirta-se conosco! 🥳`
-      // )
+      // .setTitle(`To decide what to do in the future`)
+      // .setDescription(`To decide what to do in the future`)
       .setThumbnail(
         interaction.member.user.avatar
           ? `https://cdn.discordapp.com/avatars/${interaction.member.user.id}/${interaction.member.user.avatar}.png`
