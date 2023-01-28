@@ -9,8 +9,6 @@ module.exports = {
     const bot = interaction.client.user;
     const member = interaction.member;
 
-    console.log("MEMBRO", member);
-
     const embed = new EmbedBuilder()
       .setColor("#ED413E")
       .setAuthor({
