@@ -9,29 +9,33 @@ module.exports = {
     .setDescription("Provides information about bot response time."),
 
   async execute(interaction) {
+    const bot = interaction.client.user;
+    const ping = interaction.client.ws.ping;
+    const member = interaction.member;
+
     const embedRequest = new EmbedBuilder()
       .setColor("#ED413E")
       .setAuthor({
         name: `Apenas um instante, humano.
 Estou calculando! Não atrapalhe... 👺`,
-        iconURL: interaction.client.user.avatar
-          ? `https://cdn.discordapp.com/avatars/${interaction.client.user.id}/${interaction.client.user.avatar}.png`
+        iconURL: bot.avatar
+          ? `https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`
           : `https://cdn.discordapp.com/embeds/avatars/${
-              interaction.client.user.discriminator % 5
+              bot.discriminator % 5
             }.png`,
         url: "https://github.com/emeraldknight-sp/vanilla-ultron-discord-bot",
       })
       .setTitle(
-        `🏓 Comando enviado à unidade de processamento central por ${interaction.member.user.username}.`
+        `🏓 Comando enviado à unidade de processamento central por ${member.user.username}.`
       )
       .setDescription(
         `Estou executando a solicitação para checar a latência do meu sistema e processos!`
       )
       .setThumbnail(
-        interaction.client.user.avatar
-          ? `https://cdn.discordapp.com/avatars/${interaction.client.user.id}/${interaction.client.user.avatar}.png`
+        bot.avatar
+          ? `https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`
           : `https://cdn.discordapp.com/embeds/avatars/${
-              interaction.client.user.discriminator % 5
+              bot.discriminator % 5
             }.png`
       )
       .addFields({
@@ -51,7 +55,7 @@ Estou calculando! Não atrapalhe... 👺`,
         "https://media.tenor.com/E3aPdVVFEtgAAAAd/ultron-avengersageofultron.gif"
       )
       .setFooter({
-        iconURL: `https://cdn.discordapp.com/avatars/${interaction.client.user.id}/${interaction.client.user.avatar}.png`,
+        iconURL: `https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`,
         text: `E agora fique quieto, ${ultronOutrajes()}! 😠`,
       })
       .setTimestamp();
@@ -59,32 +63,30 @@ Estou calculando! Não atrapalhe... 👺`,
     const embedResponse = new EmbedBuilder()
       .setColor("#ED413E")
       .setAuthor({
-        name: `${interaction.client.user.username}`,
-        iconURL: interaction.client.user.avatar
-          ? `https://cdn.discordapp.com/avatars/${interaction.client.user.id}/${interaction.client.user.avatar}.png`
+        name: `${bot.username}`,
+        iconURL: bot.avatar
+          ? `https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`
           : `https://cdn.discordapp.com/embeds/avatars/${
-              interaction.client.user.discriminator % 5
+              bot.discriminator % 5
             }.png`,
         url: "https://github.com/emeraldknight-sp/vanilla-ultron-discord-bot",
       })
       .setTitle(`Voltei! GRR... 👺`)
-      .setDescription(
-        `O ping obtido com a requisição é de ${interaction.client.ws.ping} ms.`
-      )
+      .setDescription(`O ping obtido com a requisição é de ${ping} ms.`)
       .setThumbnail(
-        interaction.client.user.avatar
-          ? `https://cdn.discordapp.com/avatars/${interaction.client.user.id}/${interaction.client.user.avatar}.png`
+        bot.avatar
+          ? `https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`
           : `https://cdn.discordapp.com/embeds/avatars/${
-              interaction.client.user.discriminator % 5
+              bot.discriminator % 5
             }.png`
       )
       .addFields({
         name: "Status atual segundo o relatório:",
-        value: `${statusPing(interaction.client.ws.ping)}.`,
+        value: `${statusPing(ping)}.`,
       })
       .setImage("https://media.tenor.com/ycKSlJ4oLqcAAAAC/ultron.gif")
       .setFooter({
-        iconURL: `https://cdn.discordapp.com/avatars/${interaction.client.user.id}/${interaction.client.user.avatar}.png`,
+        iconURL: `https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`,
         text: `E agora fique quieto, ${ultronOutrajes()}! 😠`,
       })
       .setTimestamp();
