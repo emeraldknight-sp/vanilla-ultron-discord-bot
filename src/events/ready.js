@@ -38,6 +38,13 @@ module.exports = {
         status: "dnd",
         url: "https://www.facebook.com/MegavacuoOficial",
       },
+
+      {
+        name: "Meu mestre",
+        type: ActivityType.Listening,
+        status: "online",
+        url: "https://www.instagram.com/davidalmeidadev",
+      },
     ];
 
     const setStatus = () => {
