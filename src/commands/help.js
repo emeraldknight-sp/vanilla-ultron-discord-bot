@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require(`discord.js`);
-const ultronOutrajes = require(`../utils/ultronOutrajes`);
+const { ultronOutrajes } = require(`../utils/ultronOutrajes`);
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -28,17 +28,17 @@ module.exports = {
               bot.discriminator % 5
             }.png`
       )
-      .addFields({
-        name: `🎧 Música`,
-        value: `\`play\` \`pause\` \`skip\` \`stop\` `,
-      })
-      .addFields({
-        name: `👤 Administração`,
-        value: `\`ban\` \`unban\` \`kick\` \`silence\` `,
-      })
+      // .addFields({
+      //   name: `🎧 Música`,
+      //   value: `\`play\` \`pause\` \`skip\` \`stop\` `,
+      // })
+      // .addFields({
+      //   name: `👤 Administração`,
+      //   value: `\`ban\` \`unban\` \`kick\` \`silence\` `,
+      // })
       .addFields({
         name: `🎲 Diversão`,
-        value: `\`lucky\` \`meow\` `,
+        value: `\`lucky\``,
       })
       .addFields({
         name: `🧰 Utilidades`,

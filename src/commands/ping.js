@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const wait = require("node:timers/promises").setTimeout;
-const statusPing = require("../utils/statusPing");
-const ultronOutrajes = require("../utils/ultronOutrajes");
+const { statusPing } = require("../utils/statusPing");
+const { ultronOutrajes } = require("../utils/ultronOutrajes");
 
 module.exports = {
   data: new SlashCommandBuilder()

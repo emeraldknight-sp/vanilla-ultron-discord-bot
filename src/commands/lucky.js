@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const ultronOutrajes = require("../utils/ultronOutrajes");
+const { ultronOutrajes } = require("../utils/ultronOutrajes");
 
 module.exports = {
   data: new SlashCommandBuilder()

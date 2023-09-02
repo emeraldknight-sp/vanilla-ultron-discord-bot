@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const daysParser = require("../utils/diffInDays");
-const ultronOutrajes = require("../utils/ultronOutrajes");
+const { diffInDays } = require("../utils/diffInDays");
+const { ultronOutrajes } = require("../utils/ultronOutrajes");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -37,7 +37,7 @@ module.exports = {
           value: `${guild.createdAt.toLocaleDateString(
             "pt-BR",
             options
-          )}, ${daysParser(guild.createdAt, new Date())} dias.`,
+          )}, ${diffInDays(guild.createdAt)} dias.`,
         },
         {
           name: "👥 Quantidade de membros",

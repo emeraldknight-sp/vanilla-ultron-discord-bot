@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const daysParser = require("../utils/diffInDays");
-const ultronOutrajes = require("../utils/ultronOutrajes");
+const { diffInDays } = require("../utils/diffInDays");
+const { ultronOutrajes } = require("../utils/ultronOutrajes");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -30,9 +30,8 @@ module.exports = {
       })
       .setTitle(`🔔 Ficha de Membro`)
       .setDescription(
-        `**${member.user.username}** é membro de ${guild.name} a ${daysParser(
-          member.joinedAt,
-          new Date()
+        `**${member.user.username}** é membro de ${guild.name} a ${diffInDays(
+          member.joinedAt
         )} dias! 🎉 Com o tempo folhas de papéis ficaram em desuso para nossa necessidade de manter os dados dos nossos membros atualizados, então por isso reuni eles e os estoquei na nuvem e aqui estão eles.`
       )
       .setThumbnail(
