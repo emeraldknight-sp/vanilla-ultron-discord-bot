@@ -1,9 +1,9 @@
-const { Events, ActivityType } = require("discord.js");
+import { ActivityType, Events } from "discord.js";
 
-module.exports = {
+export default {
   name: Events.ClientReady,
   once: true,
-  execute(client) {
+  async execute(client) {
     const options = [
       {
         name: "No more strings!",
@@ -61,7 +61,9 @@ module.exports = {
         status: options[option].status,
       });
     };
-
+    console.log(
+      "OLÁ, EU SOU O ULTRON DO FUTURO, \nVINDO PRA AVISAR QUE ESTOU FUNCIONANDO, \nPARABENS MESTRE, VOCE CONSEGUIU!"
+    );
     setInterval(setStatus, 60 * 1000);
     console.log(`${client.user.username} has logged into Discord! ✅`);
   },
