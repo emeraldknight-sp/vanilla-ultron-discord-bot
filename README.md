@@ -24,9 +24,11 @@ Projeto de bot para discord feito para ajudar em pequenas tarefas corriqueiras d
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- [JavaScript ES6+](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- [TypeScript](https://www.typescriptlang.org/)
 - [Discord.JS](https://discord.js.org/#/)
 - [Node e Yarn](https://nodejs.org/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Nodemon](https://nodemon.io/)
 
 ## 💻 Projeto
 
