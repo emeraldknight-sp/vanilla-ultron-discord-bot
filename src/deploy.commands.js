@@ -16,8 +16,6 @@ const TOKEN = process.env.DISCORD_TOKEN;
 const commands = [];
 const commandFiles = await readdir("./src/commands");
 
-console.log("DATA", commandFiles);
-
 for (const file of commandFiles) {
   const commandModule = await import(`./commands/${file}`);
   if (commandModule.default && commandModule.default.data) {

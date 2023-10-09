@@ -61,9 +61,7 @@ export default {
         status: options[option].status,
       });
     };
-    console.log(
-      "OLÁ, EU SOU O ULTRON DO FUTURO, \nVINDO PRA AVISAR QUE ESTOU FUNCIONANDO, \nPARABENS MESTRE, VOCE CONSEGUIU!"
-    );
+
     setInterval(setStatus, 60 * 1000);
     console.log(`${client.user.username} has logged into Discord! ✅`);
   },
