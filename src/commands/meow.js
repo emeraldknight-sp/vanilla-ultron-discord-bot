@@ -1,18 +1,22 @@
-const { SlashCommandBuilder } = require("discord.js");
-const { request } = require("undici");
-const wait = require("node:timers/promises").setTimeout;
+import { SlashCommandBuilder } from "discord.js";
+import { request } from "undici";
+import wait from "node:timers/promises";
 
-module.exports = {
-  data: new SlashCommandBuilder()
-    .setName("meow")
-    .setDescription("Random cats images"),
-  async execute(interaction) {
-    await interaction.deferReply();
+const data = new SlashCommandBuilder()
+  .setName("meow")
+  .setDescription("Random cats images");
 
-    const results = await request("https://aws.random.cat/meow");
-    const { file } = await results.body.json();
-    await wait(1000);
+async function execute(interaction) {
+  await interaction.deferReply();
 
-    await interaction.editReply({ files: [file] });
-  },
+  const results = await request("https://aws.random.cat/meow");
+  const { file } = await results.body.json();
+  await wait.setTimeout(1000);
+
+  await interaction.editReply({ files: [file] });
+}
+
+export default {
+  data,
+  execute,
 };
