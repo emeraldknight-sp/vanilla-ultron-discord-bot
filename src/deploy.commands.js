@@ -1,18 +1,33 @@
-const { REST, Routes } = require("discord.js");
-const { clientId, guildId, token } = require("../config.json");
-const fs = require("node:fs");
+import { REST } from "discord.js";
+import { readdir } from "fs/promises";
+import { Routes } from "discord-api-types/v10";
+import { pathToFileURL } from "node:url";
+
+import { register } from "node:module";
+register("ts-node/esm", pathToFileURL("./"));
+
+import { config } from "dotenv";
+config();
+
+const CLIENT_ID = process.env.CLIENT_ID;
+const GUILD_ID = process.env.GUILD_ID;
+const TOKEN = process.env.DISCORD_TOKEN;
 
 const commands = [];
-const commandFiles = fs
-  .readdirSync("./src/commands")
-  .filter((file) => file.endsWith(".js"));
+const commandFiles = await readdir("./src/commands");
+
+console.log("DATA", commandFiles);
 
 for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  commands.push(command.data.toJSON());
+  const commandModule = await import(`./commands/${file}`);
+  if (commandModule.default && commandModule.default.data) {
+    commands.push(commandModule.default.data.toJSON());
+  } else {
+    console.error(`Command data is missing in file: ${file}`);
+  }
 }
 
-const rest = new REST({ version: "10" }).setToken(token);
+const rest = new REST({ version: "10" }).setToken(TOKEN);
 
 (async () => {
   try {
@@ -21,7 +36,7 @@ const rest = new REST({ version: "10" }).setToken(token);
     );
 
     const data = await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
+      Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID),
       { body: commands }
     );
 
