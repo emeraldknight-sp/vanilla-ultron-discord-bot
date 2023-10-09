@@ -1,4 +1,4 @@
-const statusPing = (responseTime) => {
+export const statusPing = (responseTime) => {
   if (responseTime < 20) {
     return "Excelente";
   } else if (responseTime < 50) {
@@ -10,8 +10,4 @@ const statusPing = (responseTime) => {
   } else {
     return "Péssimo";
   }
-};
-
-module.exports = {
-  statusPing,
 };
