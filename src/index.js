@@ -34,7 +34,6 @@ async function setupCommands() {
       if (file.endsWith(".js")) {
         const filePath = path.join(commandsPath, file);
         const { default: command } = await import(filePath);
-        console.log("FUNCIONA PELO AMOR DEEEEEEEEEEEUS!");
 
         if ("data" in command && "execute" in command) {
           client.commands.set(command.data.name, command);
@@ -58,10 +57,7 @@ async function setupEvents() {
     for (const file of eventFiles) {
       if (file.endsWith(".js")) {
         const filePath = path.join(eventsPath, file);
-        console.log("Importing file:", filePath); // Adicione esta linha para depurar
-
         const { default: event } = await import(filePath);
-        console.log("Imported event:", event); // Adicione esta linha para depurar
 
         if (event.once) {
           client.once(event.name, (...args) => event.execute(...args));

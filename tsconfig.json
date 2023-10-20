@@ -12,5 +12,7 @@
     "strict": true,
     "useUnknownInCatchVariables": true,
     "skipLibCheck": true
-  }
+  },
+  "include": ["./src"],
+  "exclude": ["./dist"]
 }
